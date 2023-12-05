@@ -341,24 +341,17 @@ interface MobileDetectorInterface
      */
     public function getUserAgent(): ?string;
 
-    /**
-     * Set the User-Agent to be used.
-     *
-     * @param string|null $userAgent the user agent string to set
-     *
-     * @return string|null
-     */
-    public function setUserAgent(string $userAgent = null): ?string;
+    public function setUserAgent(string|null $userAgent);
 
     /**
      * This method checks for a certain property in the
      * userAgent.
      *
-     * @param string $key
+     * @param string $ruleName
      *
      * @return bool|int|null
      */
-    public function is(string $key): bool|int|null;
+    public function is(string $ruleName): bool|int|null;
 
     /**
      * Check if the device is mobile.
@@ -376,20 +369,7 @@ interface MobileDetectorInterface
      */
     public function isTablet(): bool;
 
-    /**
-     * Some detection rules are relative (not standard),
-     * because of the diversity of devices, vendors and
-     * their conventions in representing the User-Agent or
-     * the HTTP headers.
-     *
-     * This method will be used to check custom regexes against
-     * the User-Agent string.
-     *
-     * @param string|null $userAgent
-     *
-     * @return bool
-     */
-    public function match($regex, string $userAgent = null): bool;
+    public function match($regex, ?string $userAgent): bool;
 
     /**
      * Prepare the version number.
@@ -400,18 +380,5 @@ interface MobileDetectorInterface
      */
     public function prepareVersionNo(string $ver): float;
 
-    /**
-     * Check the version of the given property in the User-Agent.
-     * Will return a float number. (eg. 2_0 will return 2.0, 4.3.1 will return 4.31).
-     *
-     * @param string $propertyName The name of the property. See self::getProperties() array
-     *                             keys for all possible properties.
-     * @param string $type         Either self::VERSION_TYPE_STRING to get a string value or
-     *                             self::VERSION_TYPE_FLOAT indicating a float value. This parameter
-     *                             is optional and defaults to self::VERSION_TYPE_STRING. Passing an
-     *                             invalid parameter will default to the this type as well.
-     *
-     * @return string|float the version of the property we are trying to extract
-     */
-    public function version(string $propertyName, string $type = 'text'): float|string;
+    public function version(string $propertyName, string $type = 'text'): float|bool|string;
 }

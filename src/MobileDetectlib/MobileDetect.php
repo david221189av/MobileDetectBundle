@@ -1091,10 +1091,10 @@ class MobileDetect implements MobileDetectorInterface
     /**
      * Set the HTTP Headers. Must be PHP-flavored. This method will reset existing headers.
      *
-     * @param array $httpHeaders The headers to set. If null, then using PHP's _SERVER to extract
+     * @param array|null $httpHeaders The headers to set. If null, then using PHP's _SERVER to extract
      *                           the headers. The default null is left for backwards compatibility.
      */
-    public function setHttpHeaders(array $httpHeaders = []): void
+    public function setHttpHeaders(array|null $httpHeaders = [])
     {
         $this->httpHeaders = $httpHeaders;
 
@@ -1203,27 +1203,16 @@ class MobileDetect implements MobileDetectorInterface
         return static::$knownCloudFrontHeaders;
     }
 
-    /**
-     * Prepare the User-Agent string for matching phase.
-     *
-     * @param string $userAgent The User-Agent string.
-     * @return string
-     */
-    private function prepareUserAgent(string $userAgent): string
+    private function prepareUserAgent(string|null $userAgent): string
     {
         $userAgent = trim($userAgent);
         return substr($userAgent, 0, $this->config['maximumUserAgentLength']);
     }
 
-    /**
-     * Set the User-Agent to be used.
-     *
-     * @param string $userAgent The User-Agent string.
-     * @return string
-     */
-    public function setUserAgent(string $userAgent): string
+    public function setUserAgent(string|null $userAgent): string
     {
         $preparedUserAgent = $this->prepareUserAgent($userAgent);
+
         return $this->userAgent = $preparedUserAgent;
     }
 
@@ -1518,22 +1507,7 @@ class MobileDetect implements MobileDetectorInterface
         }
     }
 
-    /**
-     * Some detection rules are relative (not standard),
-     * because of the diversity of devices, vendors and
-     * their conventions in representing the User-Agent or
-     * the HTTP headers.
-     *
-     * This method will be used to check custom regexes against
-     * the User-Agent string.
-     *
-     * @param string $regex
-     * @param string $userAgent
-     * @return bool
-     *
-     * @todo: search in the HTTP headers too.
-     */
-    public function match(string $regex, string $userAgent): bool
+    public function match($regex, string|null $userAgent = null): bool
     {
         $match = (bool) preg_match(sprintf('#%s#is', $regex), $userAgent, $matches);
         // If positive match is found, store the results for debug.
@@ -1542,7 +1516,7 @@ class MobileDetect implements MobileDetectorInterface
             $this->matchesArray = $matches;
         }
 
-        return $match;
+        return (bool)$match;
     }
 
     /**
@@ -1631,19 +1605,6 @@ class MobileDetect implements MobileDetectorInterface
         return (float) implode('.', $arrVer);
     }
 
-    /**
-     * Check the version of the given property in the User-Agent.
-     * Will return a float number. (e.g. 2_0 will return 2.0, 4.3.1 will return 4.31)
-     *
-     * @param string $propertyName The name of the property. See self::getProperties() array
-     *                             keys for all possible properties.
-     * @param string $type         Either self::VERSION_TYPE_STRING to get a string value or
-     *                             self::VERSION_TYPE_FLOAT indicating a float value. This parameter
-     *                             is optional and defaults to self::VERSION_TYPE_STRING. Passing an
-     *                             invalid parameter will default to the type as well.
-     *
-     * @return string|float|false The version of the property we are trying to extract.
-     */
     public function version(string $propertyName, string $type = self::VERSION_TYPE_STRING): float|bool|string
     {
         if (empty($propertyName) || !$this->hasUserAgent()) {
@@ -1712,26 +1673,21 @@ class MobileDetect implements MobileDetectorInterface
 
     public static function getScriptVersion(): string
     {
-        // TODO: Implement getScriptVersion() method.
     }
 
     public static function getUserAgents(): array
     {
-        // TODO: Implement getUserAgents() method.
     }
 
     public static function getUtilities(): array
     {
-        // TODO: Implement getUtilities() method.
     }
 
     public function getCfHeaders(): array
     {
-        // TODO: Implement getCfHeaders() method.
     }
 
     public function setCfHeaders(array $cfHeaders = null): bool
     {
-        // TODO: Implement setCfHeaders() method.
     }
 }
