@@ -209,18 +209,6 @@ use BadMethodCallException;
 interface MobileDetectorInterface
 {
     /**
-     * Magic overloading method.
-     *
-     * @method bool is[...]()
-     *
-     * @param string $name
-     * @param array  $arguments
-     *
-     * @throws BadMethodCallException when the method doesn't exist and doesn't start with 'is'
-     */
-    public function __call($name, $arguments);
-
-    /**
      * Retrieve the list of known browsers. Specifically, the user agents.
      *
      * @return array list of browsers / user agents

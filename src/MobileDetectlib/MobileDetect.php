@@ -27,6 +27,7 @@ declare(strict_types=1);
 namespace MobileDetectBundle\MobileDetectlib;
 
 use BadMethodCallException;
+use Exception;
 use MobileDetectBundle\DeviceDetector\MobileDetectorInterface;
 use MobileDetectBundle\MobileDetectlib\Cache\Cache;
 use MobileDetectBundle\MobileDetectlib\Cache\CacheException;
@@ -1354,9 +1355,7 @@ class MobileDetect implements MobileDetectorInterface
      * @param string $name
      * @param array $arguments
      * @return bool
-     * @throws BadMethodCallException when the method doesn't exist and doesn't start with 'is'
-     * @throws \Exception
-     * @throws InvalidArgumentException
+     * @throws MobileDetectException
      */
     public function __call(string $name, array $arguments)
     {
