@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace MobileDetectBundle\DeviceDetector;
 
 use BadMethodCallException;
-use Detection\MobileDetect;
 
 /**
  * @method bool isiPhone()

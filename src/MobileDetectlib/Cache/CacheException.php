@@ -1,8 +1,6 @@
 <?php
 
-namespace Detection\Cache;
-
-use Psr\SimpleCache\InvalidArgumentException;
+namespace MobileDetectBundle\MobileDetectlib\Cache;
 
 class CacheException extends \Exception
 {

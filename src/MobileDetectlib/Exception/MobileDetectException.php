@@ -1,6 +1,6 @@
 <?php
 
-namespace Detection\Exception;
+namespace MobileDetectBundle\MobileDetectlib\Exception;
 
 class MobileDetectException extends \Exception
 {

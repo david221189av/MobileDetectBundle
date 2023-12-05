@@ -24,13 +24,17 @@
 
 declare(strict_types=1);
 
-namespace Detection;
+namespace MobileDetectBundle\MobileDetectlib;
 
 use BadMethodCallException;
-use Detection\Cache\Cache;
-use Detection\Cache\CacheException;
-use Detection\Exception\MobileDetectException;
+use MobileDetectBundle\DeviceDetector\MobileDetectorInterface;
+use MobileDetectBundle\MobileDetectlib\Cache\Cache;
+use MobileDetectBundle\MobileDetectlib\Cache\CacheException;
+use MobileDetectBundle\MobileDetectlib\Exception\MobileDetectException;
 use Psr\Cache\InvalidArgumentException;
+//use function count;
+//use function Detection\str_contains;
+//use function Detection\str_starts_with;
 
 /**
  * Auto-generated isXXXX() magic methods.
@@ -221,8 +225,12 @@ use Psr\Cache\InvalidArgumentException;
  * @method bool isWebKit()
  * @method bool isConsole()
  * @method bool isWatch()
+ * @method bool isBot()
+ * @method bool isMobileBot()
+ * @method bool isDesktopMode()
+ * @method bool isTV()
  */
-class MobileDetect
+class MobileDetect implements MobileDetectorInterface
 {
     /**
      * A cache for resolved matches
@@ -1701,5 +1709,30 @@ class MobileDetect
     public static function getProperties(): array
     {
         return static::$properties;
+    }
+
+    public static function getScriptVersion(): string
+    {
+        // TODO: Implement getScriptVersion() method.
+    }
+
+    public static function getUserAgents(): array
+    {
+        // TODO: Implement getUserAgents() method.
+    }
+
+    public static function getUtilities(): array
+    {
+        // TODO: Implement getUtilities() method.
+    }
+
+    public function getCfHeaders(): array
+    {
+        // TODO: Implement getCfHeaders() method.
+    }
+
+    public function setCfHeaders(array $cfHeaders = null): bool
+    {
+        // TODO: Implement setCfHeaders() method.
     }
 }

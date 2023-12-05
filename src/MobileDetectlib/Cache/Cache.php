@@ -1,6 +1,6 @@
 <?php
 
-namespace Detection\Cache;
+namespace MobileDetectBundle\MobileDetectlib\Cache;
 
 use Psr\SimpleCache\CacheInterface;
 

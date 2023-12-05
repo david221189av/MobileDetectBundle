@@ -1,6 +1,6 @@
 <?php
 
-namespace Detection\Cache;
+namespace MobileDetectBundle\MobileDetectlib\Cache;
 
 /**
  * Simple cache item (key, value, ttl) that is being
