@@ -34,7 +34,7 @@
         }
     ],
     "require": {
-        "php": ">=8.2.7",
+        "php": ">=8.2.3",
         "symfony/dependency-injection": "^7.0",
         "symfony/event-dispatcher": "^7.0",
         "symfony/framework-bundle": "^7.0",
